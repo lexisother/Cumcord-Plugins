@@ -1,0 +1,7 @@
+{
+    "name": "owoify",
+    "description": "Sends your messages in owo speak. The first Cumcord plugin ever.",
+    "author": "Alyxia Sother",
+    "file": "index.js",
+    "license": "Apache-2.0"
+}
