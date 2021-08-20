@@ -1,0 +1,7 @@
+{
+  "name": "DevMode",
+  "description": "Enables developer mode.",
+  "author": "Alyxia Sother",
+  "file": "index.js",
+  "license": "Apache-2.0"
+}
