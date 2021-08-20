@@ -8,5 +8,11 @@ export default {
             value: 1
         });
     },
-    onUnload() {}
+    onUnload() {
+        Object.defineProperty(webpackModules.findByProps("isDeveloper"), "isDeveloper", {
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+    }
 };
