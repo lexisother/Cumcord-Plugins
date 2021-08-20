@@ -8,7 +8,7 @@ function random(array) {
 
 export default {
     onLoad() {
-        unpatch = cumcord.patcher.patch("sendMessage", webpackModules.findByProps("sendMessage"), (args) => {
+        unpatch = cumcord.patcher.after("sendMessage", webpackModules.findByProps("sendMessage"), (args) => {
             if (args[1].content.startsWith("!owo")) {
                 const msg = args[1].content.replace("!owo", "");
 
@@ -23,6 +23,7 @@ export default {
 
                 args[1].content = owoified;
             }
+            return args;
         });
     },
     onUnload() {
