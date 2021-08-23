@@ -1,0 +1,7 @@
+{
+  "name": "HideBlockedMessages",
+  "description": "Hides all blocked messages.",
+  "author": "Alyxia Sother",
+  "file": "index.js",
+  "license": "Apache-2.0"
+}
