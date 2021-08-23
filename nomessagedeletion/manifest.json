@@ -1,0 +1,7 @@
+{
+    "name": "NoMessageDeletion",
+    "description": "Stops deleted messages from being hidden.",
+    "author": "Alyxia Sother",
+    "file": "index.js",
+    "license": "Apache-2.0"
+}
