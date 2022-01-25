@@ -1,9 +1,12 @@
 import { persist } from '@cumcord/pluginData';
-import { findByDisplayName } from '@cumcord/modules/webpack';
+import { findByDisplayName, findByProps } from '@cumcord/modules/webpack';
 import { useNest } from '@cumcord/utils';
 
 const FormText = findByDisplayName('FormText');
 const Switch = findByDisplayName('Switch');
+const Header = findByProps('Sizes', 'Tags');
+const Card = findByDisplayName('Card');
+const cardClasses = findByProps('cardPrimary');
 
 export default () => {
   useNest(persist);
@@ -18,8 +21,15 @@ export default () => {
         <Switch
           checked={persist.ghost.receive ?? true}
           onChange={(e) => (persist.store.receive = e)}
+          disabled={true}
         />
-        <FormText>Hide embeds when receiving message (NOT IMPLEMENTED!!!!!)</FormText>
+        <FormText>Hide embeds when receiving message</FormText>
+
+        <Card type="cardDanger" outline={false} editable={false}>
+          <Header tag="h2" size={Header.Sizes.SIZE_20}>
+            NOT IMPLEMENTED!!!
+          </Header>
+        </Card>
       </div>
     </>
   );
