@@ -1,0 +1,7 @@
+{
+  "name": "Auto Hide Embeds",
+  "description": "Automagically hides link embeds. (when sending them)",
+  "author": "Alyxia Sother",
+  "file": "index.js",
+  "license": "Apache-2.0"
+}
