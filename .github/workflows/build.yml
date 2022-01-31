@@ -2,18 +2,18 @@ name: Build with Sperm
 on: [push]
 
 jobs:
-    build:
-        name: Build
-        runs-on: ubuntu-latest
-        steps:
-            - name: executing remote ssh commands using password
-              uses: appleboy/ssh-action@master
-              with:
-                  host: ${{ secrets.HOST }}
-                  username: ${{ secrets.USERNAME }}
-                  password: ${{ secrets.PASSWORD }}
-                  script: |
-                      cd ~/Documents/gitrepos/cumcord/plugins
-                      git pull
-                      find . -maxdepth 1 -type d \( ! -name . \) \( ! -name .git \) \( ! -name .github \) \( ! -name dist \) -exec bash -c "cd '{}' && echo '{}' && /home/alyxia/.nvm/versions/node/v16.1.0/bin/node ~/Documents/gitrepos/cumcord/sperm/src/index.js build manifest.json -o ../dist/{}" \;
-                      systemctl --user restart cumcord
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ~/Documents/gitrepos/cumcord/plugins
+            git pull
+            find . -maxdepth 1 -type d \( ! -name . \) \( ! -name .git \) \( ! -name .github \) \( ! -name dist \) -exec bash -c "cd '{}' && echo '{}' && /home/alyxia/.nvm/versions/node/v16.1.0/bin/node ~/Documents/gitrepos/cumcord/sperm/src/index.js build -o ../dist/{}" \;
+            systemctl --user restart cumcord
