@@ -3,13 +3,12 @@ import { findByProps } from '@cumcord/modules/webpack';
 import { before, after } from '@cumcord/patcher';
 
 let fetchSuccess;
-const { getGuild } = findByProps('getGuildCount');
-
 let addCategory;
 let addGuilds;
 
 export default {
-  onLoad() {
+  async onLoad() {
+    const data = await (await fetch('https://public.alyxia.dev/guilddb.json')).json();
     findByProps('isDispatching').dispatch({ type: 'GUILD_DISCOVERY_POPULAR_FETCH_SUCCESS' });
     fetchSuccess = FluxDispatcher._orderedActionHandlers.GUILD_DISCOVERY_POPULAR_FETCH_SUCCESS[0];
     addCategory = after(
@@ -22,7 +21,7 @@ export default {
     );
     addGuilds = before('actionHandler', fetchSuccess, (args) => {
       if (args[0].categoryId == 99) {
-        args[0].guilds = [getGuild('824921608560181258')];
+        args[0].guilds = data;
       }
     });
   },
