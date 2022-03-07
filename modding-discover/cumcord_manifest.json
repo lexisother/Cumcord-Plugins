@@ -1,0 +1,7 @@
+{
+  "name": "Client Modding Discover",
+  "description": "Shows client modding servers in Discord guild Discovery.",
+  "author": "Alyxia Sother & xirreal",
+  "file": "index.js",
+  "license": "MIT"
+}
