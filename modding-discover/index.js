@@ -1,10 +1,16 @@
 import { FluxDispatcher } from '@cumcord/modules/common';
-import { findByProps } from '@cumcord/modules/webpack';
+import { findByProps, findByDisplayName } from '@cumcord/modules/webpack';
 import { before, after } from '@cumcord/patcher';
+
+const GuildDiscoverySearchBar = findByDisplayName('GuildDiscoverySearchBar', false);
+// const discoveryCard = findByDisplayName('GuildDiscoveryCard', false);
+const guildResources = findByProps('getGuildDiscoverySplashURL');
 
 let fetchSuccess;
 let addCategory;
 let addGuilds;
+let removeBar;
+let patchGetDiscoverySplash;
 
 export default {
   async onLoad() {
@@ -24,9 +30,25 @@ export default {
         args[0].guilds = data;
       }
     });
+    patchGetDiscoverySplash = after('getGuildDiscoverySplashURL', guildResources, (args, res) => {
+      if(Object.values(data.map(guild => guild.id)).includes(args[0].id)) {
+        args[0].banner = args[0].splash;
+        res = guildResources.getGuildBannerURL(...args);
+      }
+      return res;
+    });
+    removeBar = before('default', GuildDiscoverySearchBar, (args) => {
+      args[0].placeholder = 'Find Client Modding communities';
+    });
+    // cardPatch = before('default', discoveryCard, (args) => {
+    //   console.log("Penis?");
+    //   return args;
+    // })
   },
   onUnload() {
     addCategory();
     addGuilds();
+    removeBar();
+    patchGetDiscoverySplash();
   },
 };
