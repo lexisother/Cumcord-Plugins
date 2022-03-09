@@ -37,8 +37,9 @@ export default {
       }
       return res;
     });
-    removeBar = before('default', GuildDiscoverySearchBar, (args) => {
-      args[0].placeholder = 'Find Client Modding communities';
+    removeBar = after('default', GuildDiscoverySearchBar, (args, res) => {
+      if(args[0].currentCategoryId == 99) return null;
+      return res;
     });
     // cardPatch = before('default', discoveryCard, (args) => {
     //   console.log("Penis?");
