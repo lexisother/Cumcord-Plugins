@@ -1,0 +1,7 @@
+{
+  "name": "HideMessage",
+  "description": "Allows you to hide a message via the context menu.",
+  "author": "Alyxia Sother",
+  "file": "index.jsx",
+  "license": "Apache-2.0"
+}
