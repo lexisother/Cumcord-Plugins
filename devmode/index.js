@@ -1,18 +1,8 @@
-import {webpackModules} from "@cumcord/modules";
+import { findByProps } from "@cumcord/modules/webpack";
 
-export default {
-    onLoad() {
-        Object.defineProperty(webpackModules.findByProps("isDeveloper"), "isDeveloper", {
-            configurable: true,
-            writable: true,
-            value: 1
-        });
-    },
-    onUnload() {
-        Object.defineProperty(webpackModules.findByProps("isDeveloper"), "isDeveloper", {
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-    }
-};
+const devStore = findByProps("isDeveloper");
+
+Object.defineProperty(devStore, "isDeveloper", { configurable: true, value: true });
+
+// i tested, yes this leaves the original intact
+export const onUnload = () => delete devStore.isDeveloper;
