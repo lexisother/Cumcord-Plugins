@@ -42,7 +42,6 @@ export default {
       "*twearks*",
       "*sweats*",
     ];
-    console.log("shit got loaded");
     const removeCommand = cumcord.commands.addCommand({
       name: "uwuify",
 
