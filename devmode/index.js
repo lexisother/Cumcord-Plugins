@@ -4,10 +4,10 @@ import { showConfirmationModal } from "@cumcord/ui/modals";
 
 const userMod = findByProps("getUsers");
 const nodes = Object.values(findByProps("isDeveloper")._dispatcher._dependencyGraph.nodes);
-nodes.find(x => x.name === "ExperimentStore").actionHandler["CONNECTION_OPEN"]({ user: { flags: 1 }, type: "CONNECTION_OPEN", experiments: [] });
+try { nodes.find(x => x.name === "ExperimentStore").actionHandler["OVERLAY_INITIALIZE"]({ user: { flags: 1 } }); } catch {};
 
 let gcUserPatch = instead("getCurrentUser", userMod, () => { return { hasFlag: () => true }});
-nodes.find(x => x.name === "DeveloperExperimentStore").actionHandler["CONNECTION_OPEN"]();
+nodes.find(x => x.name === "DeveloperExperimentStore").actionHandler["OVERLAY_INITIALIZE"]();
 gcUserPatch();
 
 export const onUnload = () => {
