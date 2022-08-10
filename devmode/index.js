@@ -16,5 +16,5 @@ export const onUnload = () => {
         content: "For developer features to be fully disabled, you need to reload Discord.",
         confirmText: "Reload",
         type: "Danger"
-    }).then(() => document.location.reload());
+    }).then((ok) => ok && document.location.reload());
 }
